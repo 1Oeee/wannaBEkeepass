@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mock Vault (Folders -> Password List)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <section class="card" aria-label="Mock vault">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Web Vault</h1>
+          <div class="sub">Folders → Passwords (mock UI)</div>
+        </div>
+      </div>
+      <div class="headerRight">
+        <div class="pill" id="pill">logged out</div>
+        <div id="lockBox" class="lockBox" style="display:none;">
+          <span id="lockIcon" class="lockIcon">🔒</span>
+          <span id="lockTimer">60</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- LOGIN -->
+    <main class="login" id="loginScreen">
+      <p class="hint">
+        Account ID format: <span class="kbd">C12345678</span>. PIN: <span class="kbd">1234</span>.
+        Any valid format logs you in (mock).
+      </p>
+
+      <div class="row">
+        <label for="account">Account ID</label>
+        <input id="account" class="mono" placeholder="C12345678" maxlength="9" autocapitalize="characters" autocomplete="off" />
+      </div>
+
+      <div class="row">
+        <label for="pin">PIN</label>
+        <input id="pin" class="mono" inputmode="numeric" placeholder="1234" maxlength="4" autocomplete="off" />
+      </div>
+
+      <div id="msg" class="msg" role="alert"></div>
+
+      <div class="btnRow">
+        <button class="primary" type="button" id="loginBtn">Log in</button>
+        <button type="button" id="genBtn">Generate account</button>
+      </div>
+    </main>
+
+    <!-- APP -->
+    <div class="app" id="appScreen">
+      <div class="appTop">
+        <div class="leftTop">
+          <div class="crumbs" id="crumbs"></div>
+        </div>
+
+        <div class="topRight">
+          <div class="who">User: <strong class="mono" id="who"></strong></div>
+          <button type="button" id="logoutBtn">Log out</button>
+        </div>
+      </div>
+
+      <div class="appBody">
+        <!-- Folder view -->
+        <div id="folderView">
+          <div class="toolbar">
+            <p class="hint">Folders (top-level). Click Open to view passwords.</p>
+            <div class="btnRow" style="margin:0;">
+              <button class="mini" type="button" id="newFolderBtn">+ Folder</button>
+            </div>
+          </div>
+
+          <div class="grid" id="folderGrid"></div>
+        </div>
+
+        <!-- Password list view -->
+        <div id="passwordView" style="display:none;">
+          <div class="toolbar">
+            <div class="search">
+              <input id="search" type="text" placeholder="Search passwords in folder..." />
+            </div>
+            <div class="btnRow" style="margin:0;">
+              <button class="mini" type="button" id="backBtn">← Back</button>
+              <button class="mini primary" type="button" id="newEntryBtn">+ Password</button>
+            </div>
+          </div>
+
+          <div class="list" id="entryList"></div>
+          <div class="empty" id="emptyState" style="display:none;">
+            No passwords in this folder.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
